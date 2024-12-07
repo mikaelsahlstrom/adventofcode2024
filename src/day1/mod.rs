@@ -58,11 +58,11 @@ pub fn part2()
         }
 
         let score = left.par_iter().map(
-            |l|
-                {
-                    (*l as usize) * right.par_iter().filter(|r| *r == l).count()
-                }
-            ).sum::<usize>();
+        |l|
+            {
+                (*l as usize) * right.par_iter().filter(|r| *r == l).count()
+            }
+        ).sum::<usize>();
 
         println!("Part 2: {}", score);
     }

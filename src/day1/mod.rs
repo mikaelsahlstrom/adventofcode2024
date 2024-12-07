@@ -58,7 +58,7 @@ pub fn part2()
         }
 
         let score = left.par_iter().map(
-        |l|
+            |l|
             {
                 (*l as usize) * right.par_iter().filter(|r| *r == l).count()
             }

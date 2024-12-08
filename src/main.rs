@@ -3,6 +3,7 @@ use clap::Parser;
 mod utils;
 mod day1;
 mod day2;
+mod day3;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about)]
@@ -59,6 +60,26 @@ fn main() {
                 }
             }
         },
+        "3" =>
+        {
+            println!("Day 3");
+            match args.part.as_str()
+            {
+                "1" =>
+                {
+                    day3::part1();
+                },
+                "2" =>
+                {
+                    day3::part2();
+                },
+                "all" | &_ =>
+                {
+                    day3::part1();
+                    day3::part2();
+                }
+            }
+        },
         "all" | &_ =>
         {
             println!("Day 1");
@@ -68,6 +89,10 @@ fn main() {
             println!("Day 2");
             day2::part1();
             day2::part2();
+
+            println!("Day 3");
+            day3::part1();
+            day3::part2();
         }
     }
 }

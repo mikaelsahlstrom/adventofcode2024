@@ -4,6 +4,7 @@ mod utils;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 #[derive(Parser)]
 #[command(author, version, about, long_about)]
@@ -80,6 +81,26 @@ fn main() {
                 }
             }
         },
+        "4" =>
+        {
+            println!("Day 4");
+            match args.part.as_str()
+            {
+                "1" =>
+                {
+                    day4::part1();
+                },
+                "2" =>
+                {
+                    day4::part2();
+                },
+                "all" | &_ =>
+                {
+                    day4::part1();
+                    day4::part2();
+                }
+            }
+        },
         "all" | &_ =>
         {
             println!("Day 1");
@@ -93,6 +114,10 @@ fn main() {
             println!("Day 3");
             day3::part1();
             day3::part2();
+
+            println!("Day 4");
+            day4::part1();
+            day4::part2();
         }
     }
 }

@@ -235,5 +235,93 @@ pub fn part1()
 
 pub fn part2()
 {
+    let mut board: Vec<Vec<char>> = vec![];
 
+    if let Ok(lines) = utils::read_lines("src/day4/input")
+    {
+        for line in lines
+        {
+            if let Ok(l) = line
+            {
+                let mut row: Vec<char> = vec![];
+
+                for c in l.chars()
+                {
+                    row.push(c);
+                }
+
+                board.push(row);
+            }
+        }
+    }
+
+    let mut count: u32 = 0;
+
+    let find_vector = vec![
+        vec![
+            vec!['M', '*', 'S'],
+            vec!['*', 'A', '*'],
+            vec!['M', '*', 'S']
+        ],
+        vec![
+            vec!['M', '*', 'M'],
+            vec!['*', 'A', '*'],
+            vec!['S', '*', 'S']
+        ],
+        vec![
+            vec!['S', '*', 'M'],
+            vec!['*', 'A', '*'],
+            vec!['S', '*', 'M']
+        ],
+        vec![
+            vec!['S', '*', 'S'],
+            vec!['*', 'A', '*'],
+            vec!['M', '*', 'M']
+        ]
+    ];
+
+    for row in 0..board.len()
+    {
+        for pos in 0..board[row].len()
+        {
+            for find in 0..find_vector.len()
+            {
+                if row + find_vector[find].len() > board.len() || pos + find_vector[find][0].len() > board[row].len()
+                {
+                    continue;
+                }
+
+                let mut found = true;
+
+                for i in 0..find_vector[find].len()
+                {
+                    for j in 0..find_vector[find][i].len()
+                    {
+                        if find_vector[find][i][j] == '*'
+                        {
+                            continue;
+                        }
+
+                        if find_vector[find][i][j] != board[row + i][pos + j]
+                        {
+                            found = false;
+                            break;
+                        }
+                    }
+
+                    if !found
+                    {
+                        break;
+                    }
+                }
+
+                if found
+                {
+                    count += 1;
+                }
+            }
+        }
+    }
+
+    println!("Part 2: {}", count);
 }
